@@ -6,22 +6,6 @@
   <link href="./style.css" rel="stylesheet" />
  </head>
  <body style="position: relative; margin-top: 36px !important;">
-  <!-- 自动播放音乐开始 -->
-  <audio id="bg-music" src="starboy.mp3" autoplay loop preload="auto"></audio>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var audio = document.getElementById('bg-music');
-      function playAudio() {
-        audio.play();
-        document.removeEventListener('click', playAudio);
-        document.removeEventListener('touchstart', playAudio);
-      }
-      document.addEventListener('click', playAudio);
-      document.addEventListener('touchstart', playAudio);
-    });
-  </script>
-  <!-- 自动播放音乐结束 -->
-  
   <script src="./jquery-1.9.1.min.js"></script>
   <script src="./jquery-ui-1.10.2.custom.min.js"></script>
   <script src="./detect-browser-device.js"></script>
@@ -29,10 +13,8 @@
    &lt;div id=javascript-banner-container&gt;&lt;div id=javascript-banner&gt;&lt;div id=javascript-banner-left&gt;&lt;/div&gt;&lt;div id=javascript-banner-middle&gt;&lt;div id=javascript-banner-text-a&gt;PLEASE TURN ON YOUR&lt;/div&gt;&lt;div id=javascript-banner-text-b&gt;JAVASCRIPT&lt;/div&gt;&lt;/div&gt;&lt;div id=javascript-banner-right&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
   </noscript>
   <div class="" id="content">
-    <!-- 你的页面内容全都保持不变 -->
-    <!-- ... -->
-    <!-- (此处省略，你原有内容全部原样保留) -->
-    <!-- ... -->
+    <!-- ...你原来的内容完全保留... -->
+    <!-- 省略其余部分，保持你的结构不变 -->
   </div>
   <script src="./email.js"></script>
   <script src="./main.js"></script>
@@ -52,5 +34,23 @@
    <div id="tip-arrow-bottom" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-bottom.png&quot;);"></div>
    <div id="tip-arrow-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-top.png&quot;);"></div>
   </div>
+
+  <!-- 自动播放音乐部分，放在页面最后所有脚本之后 -->
+  <audio id="bg-music" src="starboy.mp3" autoplay loop preload="auto"></audio>
+  <script>
+    // 仅在用户第一次点击页面后尝试播放，兼容移动端和现代浏览器
+    document.addEventListener('DOMContentLoaded', function () {
+      var audio = document.getElementById('bg-music');
+      function playAudio() {
+        if(audio.paused){
+          audio.play();
+        }
+        document.removeEventListener('click', playAudio);
+        document.removeEventListener('touchstart', playAudio);
+      }
+      document.addEventListener('click', playAudio);
+      document.addEventListener('touchstart', playAudio);
+    });
+  </script>
  </body>
 </html>
