@@ -6,6 +6,10 @@
   <link href="./style.css" rel="stylesheet" />
  </head>
  <body style="position: relative; margin-top: 36px !important;">
+  <audio id="background-music" loop>
+    <source src="starboy.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
   <script src="./jquery-1.9.1.min.js"></script>
   <script src="./jquery-ui-1.10.2.custom.min.js"></script>
   <script src="./detect-browser-device.js"></script>
@@ -1151,7 +1155,19 @@
       <div id="robby-eyes-close" style="opacity: 0; left: 55px;"></div>
      </div>
     </div>
-    <div id="balloon" style="left: 21125.5px; bottom: 117.6px;"></div>
+    <script>
+    document.getElementById('robby-container').addEventListener('click', function() {
+      var audio = document.getElementById('background-music');
+      
+      // 检查音乐是否正在播放
+      if (audio.paused) {
+        audio.play();  // 播放音乐
+      } else {
+        audio.pause(); // 暂停音乐
+      }
+    });
+  </script>
+   <div id="balloon" style="left: 21125.5px; bottom: 117.6px;"></div>
     <div id="contact-container" style="top: -5848px; left: 20651px;">
      <div id="contact-center">
       <div id="title-contact"></div>
