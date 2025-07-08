@@ -1154,18 +1154,23 @@
       <div id="robby-slides" style="left: 0px;"></div>
       <div id="robby-eyes-close" style="opacity: 0; left: 55px;"></div>
      </div>
-    </div>
+    <p>点击人物播放/暂停音乐</p>
+  </div>
     <script>
-    document.getElementById('robby-container').addEventListener('click', function() {
-      var audio = document.getElementById('background-music');
-      
-      // 检查音乐是否正在播放
-      if (audio.paused) {
-        audio.play().catch(function(error) {
-          console.log("播放失败：", error); // 捕获播放失败的错误
+    var music = document.getElementById('background-music');
+    var robbyContainer = document.getElementById('robby-container');
+    
+    robbyContainer.addEventListener('click', function() {
+      if (music.paused) {
+        // 尝试播放音频
+        music.play().then(function() {
+          console.log("音乐正在播放...");
+        }).catch(function(error) {
+          console.log("音频播放失败: ", error);
         });
       } else {
-        audio.pause();
+        // 暂停音频
+        music.pause();
       }
     });
   </script>
