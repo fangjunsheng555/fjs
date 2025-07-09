@@ -2514,29 +2514,3 @@ img {
 	height: 110px;
 	background-image: url(./images/window.png)
 }
-
-
-/* 让 contact 区域所有表单相关内容置顶 */
-#contact-box,
-#contact-box-email,
-#contact-box-subject,
-#contact-box-message,
-#contact-button,
-#contact-center,
-#contact-container {
-    z-index: 99999 !important;
-    position: absolute !important;
-    pointer-events: auto !important;
-}
-
-/* 让其它大背景类元素（包括你刚发的 title-awards-and）层级降低 */
-#title-awards-and,
-#title-about,
-#title-contact,
-.layer-horizontal,
-.layer-vertical {
-    z-index: 1 !important;
-}
-
-
-
