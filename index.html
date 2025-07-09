@@ -1306,5 +1306,47 @@
    <div id="tip-arrow-bottom" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-bottom.png&quot;);"></div>
    <div id="tip-arrow-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-top.png&quot;);"></div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+ <script>
+  // 用你的 public key 初始化 EmailJS
+  emailjs.init("J0M9Mc1uS1LlPMqUp"); // 例：emailjs.init("fTIE6rmN1jF5F_vxR")
+
+  // 监听发送按钮点击事件
+  document.getElementById('send-email').onclick = function(e) {
+    e.preventDefault(); // 阻止页面刷新
+
+    // 获取表单数据
+    var email = document.getElementById('email-address').value.trim();
+    var subject = document.getElementById('email-subject').value.trim();
+    var message = document.getElementById('email-message').value.trim();
+
+    // 简单校验
+    if (!email.match(/^([a-zA-Z0-9_.+-]+)@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/)) {
+      alert("请输入有效邮箱地址！");
+      return false;
+    }
+    if (!subject || !message) {
+      alert("请填写所有信息！");
+      return false;
+    }
+
+    // 调用 EmailJS 发送邮件
+    emailjs.send("service_sgmxopd", "template_gvwkrda", {
+      from_email: email,
+      subject: subject,
+      message: message
+    }).then(function(response) {
+      alert("发送成功！");
+      // 清空表单
+      document.getElementById('email-address').value = '';
+      document.getElementById('email-subject').value = '';
+      document.getElementById('email-message').value = '';
+    }, function(error) {
+      alert("发送失败，请重试！");
+    });
+
+    return false;
+  };
+</script>
  </body>
 </html>
