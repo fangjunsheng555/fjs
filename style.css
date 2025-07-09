@@ -2514,3 +2514,9 @@ img {
 	height: 110px;
 	background-image: url(./images/window.png)
 }
+#email-address, #email-subject, #email-message {
+  position: relative !important;
+  z-index: 10000 !important;
+  background: #fff !important;
+  pointer-events: auto !important;
+}
