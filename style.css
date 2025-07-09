@@ -2514,4 +2514,12 @@ img {
 	height: 110px;
 	background-image: url(./images/window.png)
 }
+#contact-container, #contact-container * {
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+#contact-container input, #contact-container textarea {
+  position: relative;
+  z-index: 10001 !important;
+}
 
