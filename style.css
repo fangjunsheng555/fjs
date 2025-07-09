@@ -2514,20 +2514,6 @@ img {
 	height: 110px;
 	background-image: url(./images/window.png)
 }
-#contact-container input,
-#contact-container textarea {
-  position: absolute !important;
-  left: 0 !important;
-  top: 0 !important;
-  z-index: 20000 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background: transparent !important;
-  color: #fff !important;
-  border: none !important;
-  outline: none !important;
-  box-sizing: border-box !important;
-  pointer-events: auto !important;
-}
+
 
 
