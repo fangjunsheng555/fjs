@@ -1306,16 +1306,19 @@
    <div id="tip-arrow-bottom" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-bottom.png&quot;);"></div>
    <div id="tip-arrow-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-top.png&quot;);"></div>
   </div>
-  <!-- 删除多余的 email.js 只保留这一个引用 -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-emailjs.init("J0M9Mc1uS1LlPMqUp");
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-function sendMail(e) {
+<script>
+  emailjs.init("J0M9Mc1uS1LlPMqUp");
+
+document.getElementById('send-email').onclick = function(e) {
   e.preventDefault();
+
   var email = document.getElementById('email-address').value.trim();
   var subject = document.getElementById('email-subject').value.trim();
   var message = document.getElementById('email-message').value.trim();
+
+  // 校验
   if (!email.match(/^([a-zA-Z0-9_.+-]+)@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/)) {
     alert("请输入有效邮箱地址！");
     return false;
@@ -1324,6 +1327,8 @@ function sendMail(e) {
     alert("请填写所有信息！");
     return false;
   }
+
+  // 正确匹配模板变量
   emailjs.send("service_sgmxopd", "template_gvwkrda", {
     name: email,
     message: message,
@@ -1331,6 +1336,7 @@ function sendMail(e) {
     subject: subject
   }).then(function(response) {
     alert("发送成功！");
+    // 清空表单
     document.getElementById('email-address').value = '';
     document.getElementById('email-subject').value = '';
     document.getElementById('email-message').value = '';
@@ -1338,14 +1344,10 @@ function sendMail(e) {
     alert("发送失败，请稍后重试！");
     console.log("EmailJS ERROR", error);
   });
-  return false;
-}
 
-// 推荐用 button 或 input[type=button]
-var btn = document.getElementById('send-email');
-btn.type = 'button'; // 动态修改按钮类型
-btn.onclick = sendMail;
-btn.addEventListener('touchstart', sendMail);
+  return false;
+};
+
 </script>
 
  </body>
