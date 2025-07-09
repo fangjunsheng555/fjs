@@ -2514,16 +2514,7 @@ img {
 	height: 110px;
 	background-image: url(./images/window.png)
 }
-#contact-container,
-#contact-center,
-#contact-box,
-#contact-box-email,
-#contact-box-subject,
-#contact-box-message,
-#contact-button {
-    z-index: 9999 !important;
-    position: relative !important;
-}
+
 
 
 
