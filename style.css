@@ -2520,3 +2520,6 @@ img {
   background: #fff !important;
   pointer-events: auto !important;
 }
+.contact-confirmation-container {
+  display: none !important;
+}
