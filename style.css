@@ -2516,5 +2516,41 @@ img {
 }
 
 
+/* ===== 强制让 contact 区输入表单优先响应点击，最高层 ===== */
+#contact-box,
+#contact-box-email,
+#contact-box-email input,
+#contact-box-subject,
+#contact-box-subject input,
+#contact-box-message,
+#contact-box-message textarea,
+#contact-button {
+  z-index: 99999 !important;
+  position: absolute;
+  pointer-events: auto !important;
+}
+
+/* ===== 允许文本框和 textarea 正常换行滚动 ===== */
+#contact-box-message textarea {
+  overflow: auto !important;
+  resize: vertical !important;
+  background-color: transparent !important;
+}
+
+/* ===== 防止 input/textarea 被其他绝对定位元素遮挡 ===== */
+#contact-center,
+#contact-container {
+  z-index: 99998 !important;
+  position: absolute;
+}
+
+/* ===== Debug 辅助（可选）：可加边框方便调试，确认表单可点到 ===== */
+/*
+#contact-box-message textarea,
+#contact-box-email input,
+#contact-box-subject input {
+  border: 1px solid #ff8c00 !important;
+}
+*/
 
 
