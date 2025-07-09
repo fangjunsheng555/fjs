@@ -1307,20 +1307,18 @@
    <div id="tip-arrow-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-top.png&quot;);"></div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
- <script>
-  // 用你的 public key 初始化 EmailJS
-  emailjs.init("J0M9Mc1uS1LlPMqUp"); // 例：emailjs.init("fTIE6rmN1jF5F_vxR")
 
-  // 监听发送按钮点击事件
+<script>
+  emailjs.init("J0M9Mc1uS1LlPMqUp");
+
   document.getElementById('send-email').onclick = function(e) {
-    e.preventDefault(); // 阻止页面刷新
+    e.preventDefault();
 
-    // 获取表单数据
     var email = document.getElementById('email-address').value.trim();
     var subject = document.getElementById('email-subject').value.trim();
     var message = document.getElementById('email-message').value.trim();
 
-    // 简单校验
+    // 校验
     if (!email.match(/^([a-zA-Z0-9_.+-]+)@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/)) {
       alert("请输入有效邮箱地址！");
       return false;
@@ -1330,7 +1328,7 @@
       return false;
     }
 
-    // 调用 EmailJS 发送邮件
+    // EmailJS 发送
     emailjs.send("service_sgmxopd", "template_gvwkrda", {
       from_email: email,
       subject: subject,
@@ -1342,11 +1340,13 @@
       document.getElementById('email-subject').value = '';
       document.getElementById('email-message').value = '';
     }, function(error) {
-      alert("发送失败，请重试！");
+      alert("发送失败，请稍后重试！");
+      console.log("EmailJS ERROR", error);
     });
 
     return false;
   };
 </script>
+
  </body>
 </html>
