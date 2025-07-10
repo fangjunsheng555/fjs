@@ -1313,20 +1313,18 @@
 </audio>
 
  <script>
-// 步骤1：解决浏览器自动播放限制，监听一次交互后解锁音频
-document.addEventListener('touchstart', unlockNbaAudio, {once: true});
-document.addEventListener('click', unlockNbaAudio, {once: true});
+// 只用 .load() 静默解锁NBA音乐
 function unlockNbaAudio() {
     var nbaAudio = document.getElementById('nba-music');
-    if (nbaAudio) {
-        nbaAudio.play().then(() => {
-            nbaAudio.pause();
-            nbaAudio.currentTime = 0;
-        }).catch(()=>{});
-    }
+    if (!nbaAudio) return;
+    nbaAudio.load(); // 只load，不play，绝对不会自动播
+    document.removeEventListener('touchstart', unlockNbaAudio, true);
+    document.removeEventListener('click', unlockNbaAudio, true);
 }
+document.addEventListener('touchstart', unlockNbaAudio, true);
+document.addEventListener('click', unlockNbaAudio, true);
 
-// 步骤2：检测robby进入nba区域，切换音乐
+// 原有音乐切换逻辑
 var robby = document.getElementById('robby-container');
 var nba = document.getElementById('nba-container');
 var nbaAudio = document.getElementById('nba-music');
@@ -1349,7 +1347,7 @@ function checkRobbyToNba() {
             bgWasPlaying = !bgAudio.paused;
             bgAudio.pause();
             nbaAudio.currentTime = 0;
-            nbaAudio.play().catch(()=>{});
+            nbaAudio.play().catch(function(){});
             nbaIsPlaying = true;
         }
     } else {
@@ -1358,12 +1356,15 @@ function checkRobbyToNba() {
             nbaAudio.currentTime = 0;
             nbaIsPlaying = false;
             if (bgWasPlaying) {
-                bgAudio.play().catch(()=>{});
+                bgAudio.play().catch(function(){});
             }
         }
     }
 }
 setInterval(checkRobbyToNba, 50);
+
+
 </script>
+
  </body>
 </html>
