@@ -2514,3 +2514,4 @@ img {
 	height: 110px;
 	background-image: url(./images/window.png)
 }
+input, textarea, select { font-size:16px !important; }
